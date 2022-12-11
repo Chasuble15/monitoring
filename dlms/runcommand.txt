@@ -1,0 +1,2 @@
+docker build -t dlms_exporter .
+docker run --device=/dev/ttyUSB0 -d -p 9600:9600 --restart=always --name dlms_exporter dlms_exporter

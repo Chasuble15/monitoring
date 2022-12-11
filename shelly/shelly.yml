@@ -1,0 +1,30 @@
+accounts:
+  - account_name: Yannick
+    auth_key: MTFlYTgzdWlkFFEE6502E5144C533E4F0479BA568EF35E50B362580DDC94A3BE55BD9269648CF72BA6C3A887C9C5
+    host_name: https://shelly-39-eu.shelly.cloud/
+    devices:
+      - id: c8c9a37052cc
+        name: Shelly 3EM Yannick
+        emeters:
+          - name: phase1
+          - name: phase2
+          - name: phase3
+
+
+  - account_name: GAP
+    auth_key: MTI2YmQ2dWlkB08DEA737C0B1523854F0F68C2EF4FF1F06580FF86A0C3649799135C04BD7EF893DBD6D93FA56AB4
+    host_name: https://shelly-48-eu.shelly.cloud/        
+    devices:
+      - id: c8c9a3704fce
+        name: Shelly 3EM
+        emeters:
+          - name: phase1
+          - name: phase2
+          - name: phase3
+
+      - id: 349454757c82
+        name: Shelly 3EM Coffret
+        emeters:
+          - name: phase1
+          - name: phase2
+          - name: phase3

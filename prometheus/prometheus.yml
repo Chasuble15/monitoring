@@ -1,0 +1,54 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+rule_files:
+  - "alert.rules"
+  - "recording_rules.yml"
+
+scrape_configs:
+
+  - job_name: 'danfoss_exporter'
+    scrape_interval: 10s
+    scrape_timeout: 9s
+    static_configs:
+      - targets: ["192.168.1.143:9500"]
+
+
+  - job_name: 'modbus_exporter'
+    scrape_interval: 10s
+    scrape_timeout: 9s
+    static_configs:
+      - targets: ["192.168.1.143:9400"]
+
+
+  - job_name: 'shelly_exporter'
+    static_configs:
+      - targets: ["192.168.1.143:9300"]
+
+
+  - job_name: 'chirpstack_exporter'
+    static_configs:
+      - targets: ["192.168.1.143:9200"]
+
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ["192.168.1.143:9100"]
+
+
+  - job_name: 'dlms_exporter'
+    scrape_interval: 30s
+    scrape_timeout: 29s
+    static_configs:
+      - targets: ["192.168.1.129:9600"]
+
+
+  - job_name: 'mqtt_exporter'
+    static_configs:
+      - targets: ["192.168.1.143:9344"]
+
+remote_write:
+  - url: "http://192.168.1.143:8428/api/v1/write"
+    queue_config:
+      max_samples_per_send: 10000

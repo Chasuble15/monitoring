@@ -1,0 +1,7 @@
+groups:
+  - name: calculated
+    rules:
+    - record: calc:halle_energy
+      expr: modbusTCP_values{name="PAC5200_Halle", type="pulses"} * on() modbusTCP_values{name="PAC5200_Halle", type="factor"}
+    - record: calc:conf_temp
+      expr: modbusTCP_values{name="PAC_Dimplex", type="Temp_conference"} - 2

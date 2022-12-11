@@ -1,0 +1,123 @@
+# Config file for MQTT prometheus exporter
+
+# Logging
+#logging:
+#  logfile:  ''                                     # Optional default '' (stdout)
+#  level:    'info'                                 # Optional default 'info'
+
+# MQTT All values default to paho.mqtt.client defaults
+mqtt:
+  host:       '192.168.1.143'                   # Optional default 'localhost'
+#  port:       1883                                 # Optional default '1883'
+#  keepalive:  60                                   # Optional
+#  auth:                                            # Optional If included, username_pw_set() is called with user/password
+#    username: 'user'                               # Required (when auth is present)
+#    password: 'pass'                               # Optional
+#  tls:                                             # Optional If included, tls_set() is called with the following:
+#    ca_certs:                                      # Optional
+#    certfile:                                      # Optional
+#    keyfile:                                       # Optional
+#    cert_reqs:                                     # Optional
+#    tls_version:                                   # Optional
+#    ciphers:                                       # Optional
+
+# Prometheus
+#prometheus:
+#  exporter_port:                                   # Optional default 9344
+
+
+# Example metric definition
+metrics:
+  - name:     'phase1_power'                        # Required(unique, if multiple, only last entry is kept)
+    help:     'Shelly 3EM'                  # Required
+    type:     'gauge'                               # Required ('gauge', 'counter', 'summary' or 'histogram')
+    topic:    'shellies/shellyem3-349454756638/emeter/0/power'                     # Required
+
+  - name:     'phase1_energy'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/0/energy'                
+
+  - name:     'phase1_total'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/0/total' 
+
+  - name:     'phase1_voltage'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/0/voltage' 
+
+  - name:     'phase1_current'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/0/current'  
+
+  - name:     'phase1_pf'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/0/pf'        
+
+
+
+  - name:     'phase2_power'                        # Required(unique, if multiple, only last entry is kept)
+    help:     'Shelly 3EM'                  # Required
+    type:     'gauge'                               # Required ('gauge', 'counter', 'summary' or 'histogram')
+    topic:    'shellies/shellyem3-349454756638/emeter/1/power'                     # Required
+
+  - name:     'phase2_energy'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/1/energy'                
+
+  - name:     'phase2_total'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/1/total' 
+
+  - name:     'phase2_voltage'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/1/voltage' 
+
+  - name:     'phase2_current'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/1/current'  
+
+  - name:     'phase2_pf'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/1/pf'     
+
+
+
+  - name:     'phase3_power'                        # Required(unique, if multiple, only last entry is kept)
+    help:     'Shelly 3EM'                  # Required
+    type:     'gauge'                               # Required ('gauge', 'counter', 'summary' or 'histogram')
+    topic:    'shellies/shellyem3-349454756638/emeter/2/power'                     # Required
+
+  - name:     'phase3_energy'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/2/energy'                
+
+  - name:     'phase3_total'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/2/total' 
+
+  - name:     'phase3_voltage'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/2/voltage' 
+
+  - name:     'phase3_current'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/2/current'  
+
+  - name:     'phase3_pf'
+    help:     'Shelly 3EM'
+    type:     'gauge'
+    topic:    'shellies/shellyem3-349454756638/emeter/2/pf'         

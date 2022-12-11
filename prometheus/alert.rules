@@ -1,0 +1,11 @@
+groups:
+- name: winter
+  rules:
+  - alert: Limite de CO2 bureau de direction
+    expr: last_over_time(loxone_values{control="Direction CO2", state="value"}[1h]) > 800 
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      description: "Niveau de CO2 élevé dans le bureau de direction. Veuillez aérer la pièce."
+      

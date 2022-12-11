@@ -1,0 +1,173 @@
+version: '3.0'
+
+networks:
+  monitor-net:
+    driver: bridge
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+    portainer_data: {}
+    grafana_config: {}
+    victoriametrics: {}
+
+services:
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+      - "9443:9443"
+    networks: 
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"  
+
+  prometheus:
+    image: prom/prometheus:latest
+    user: root
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=1y'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    networks: 
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - grafana_config:/etc/grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks: 
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+
+
+  nodeexporter:
+    image: prom/node-exporter:v1.3.1
+    container_name: node_exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    networks: 
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+   
+
+#  modbusexporter:
+#    image: modbus_exporter
+#    build: ./modbus
+#    container_name: modbus_exporter
+#    restart: unless-stopped
+#    ports:
+#      - "9400:9400"
+#    networks: 
+#      - monitor-net
+#    labels:
+#      org.label-schema.group: "monitoring"
+
+
+#  chirpstackexporter:
+#    image: chirpstack_exporter
+#    build: ./chirpstack
+#    container_name: chirpstack_exporter
+#    restart: unless-stopped
+#    ports:
+#      - "9200:9200"
+#      - "9201:9201"
+#    networks: 
+#      - monitor-net
+#    labels:
+#      org.label-schema.group: "monitoring"      
+
+  
+ # shellyexporter:
+ #   image: shelly_exporter
+ #   build: ./shelly
+ #   container_name: shelly_exporter
+ #   restart: unless-stopped
+ #   ports:
+ #     - "9300:9300"
+ #   networks: 
+ #     - monitor-net
+ #   labels:
+ #     org.label-schema.group: "monitoring"  
+
+
+  #danfossexporter:
+  #  image: danfoss_exporter
+  #  build: ./danfoss
+  #  container_name: danfoss_exporter
+  #  restart: unless-stopped
+  #  ports:
+  #    - "9500:9500"
+  #  networks: 
+  #    - monitor-net
+  #  labels:
+  #    org.label-schema.group: "monitoring"
+
+
+  victoriametrics:
+    image: victoriametrics/victoria-metrics
+    container_name: victoria_metrics
+    volumes:
+      - victoriametrics:/victoria-metrics-data
+    command:
+      - '--retentionPeriod=20y'  
+    restart: unless-stopped
+    ports:
+      - "8428:8428"
+    networks:
+      - monitor-net  
+    labels:
+      org.label-schema.group: "monitoring"  
+
+
+# mqttexporter:
+#    image: ghcr.io/fhemberger/mqtt_exporter
+#    container_name: mqtt_exporter
+#    restart: unless-stopped
+#    volumes:
+#      - ./mqtt:/usr/src/app/conf:ro
+#    ports:
+#      - 9344:9344
+#    networks:
+#      - monitor-net
+#    labels:
+#      org.label-schema.group: "monitoring" 
+
+ 

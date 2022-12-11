@@ -1,0 +1,478 @@
+# datatypes availables : int16, uint16, uint32, float32, float64 (double)
+
+counters:
+  - name: PAC3200_Bureaux
+    host: 192.168.1.133
+    port: 502
+    unit: 1
+    address: 801
+    fct_code: 3
+    type: daily_energy
+    out_type: float64
+    factor: 0.001
+
+  - name: PAC5200_Halle
+    host: 192.168.1.131
+    port: 502
+    unit: 1
+    type: daily_pulses
+    fct_code: 3
+    address: 812
+    out_type: uint32
+    factor: 0.001
+
+
+devices:
+
+  - name: PAC5200_Halle
+    host: 192.168.1.131
+    port: 502
+    unit: 1
+    gauges:
+
+    - name: power
+      fct_code: 3
+      address: 232
+      type: float32
+      factor: 1
+
+    - name: pulses
+      fct_code: 3
+      address: 812
+      type: uint32
+      factor: 0.001 
+
+    - name: factor
+      fct_code: 3
+      address: 800
+      type: float32
+      factor: 1 
+
+
+  - name: PAC3200_Bureaux
+    host: 192.168.1.133
+    port: 502
+    unit: 1
+    gauges:
+
+    - name: power
+      fct_code: 3
+      address: 65
+      type: float32
+      factor: 1 
+
+    - name: energy
+      fct_code: 3
+      address: 801
+      type: float64
+      factor: 0.001  
+
+
+  - name: PAC_Dimplex
+    host: 192.168.1.132
+    port: 17002
+    unit: 3
+    gauges:
+
+    - name: Chaleur_1-4
+      fct_code: 3
+      address: 223
+      type: uint16
+      factor: 1
+
+    - name: Chaleur_5-8
+      fct_code: 3
+      address: 224
+      type: uint16
+      factor: 10000
+
+    - name: Chaleur_9-12
+      fct_code: 3
+      address: 225
+      type: uint16
+      factor: 100000000   
+
+    - name: Compresseur
+      fct_code: 1
+      address: 41
+      type: uint16
+      factor: 1
+
+    - name: Consigne_temp_depart_sol
+      fct_code: 3
+      address: 54
+      type: uint16
+      factor: 0.1
+
+    - name: Consigne_temp_retour
+      fct_code: 3
+      address: 53
+      type: uint16
+      factor: 0.1
+
+    - name: Humidite
+      fct_code: 3
+      address: 13
+      type: uint16
+      factor: 1
+
+    - name: Mode_de_fct
+      fct_code: 3
+      address: 142
+      type: uint16
+      factor: 1 
+
+    - name: Nbr_de_demarrage
+      fct_code: 3
+      address: 72
+      type: uint16
+      factor: 1      
+     
+    - name: Passive_cooling_flow_temp_R11
+      fct_code: 3
+      address: 19
+      type: uint16
+      factor: 0.1 
+
+    - name: Passive_cooling_return_temp_R4
+      fct_code: 3
+      address: 20
+      type: uint16
+      factor: 0.1   
+
+    - name: Pompe_circulation_bueaux_M15
+      fct_code: 1
+      address: 51
+      type: uint16
+      factor: 1   
+
+    - name: Pompe_circulation_halle_M13
+      fct_code: 1
+      address: 45
+      type: uint16
+      factor: 1        
+
+    - name: Pompe_circulation_supp_M16
+      fct_code: 1
+      address: 49
+      type: uint16
+      factor: 1        
+
+    - name: Pompe_primaire_M11
+      fct_code: 1
+      address: 43
+      type: uint16
+      factor: 1       
+
+    - name: Temp_2nd_circuit_R5
+      fct_code: 3
+      address: 9
+      type: uint16
+      factor: 0.1
+
+    - name: Temp_conference
+      fct_code: 3
+      address: 11
+      type: uint16
+      factor: 0.1        
+
+    - name: Temp_depart_R9
+      fct_code: 3
+      address: 5
+      type: uint16
+      factor: 0.1
+
+    - name: Temp_entre_source_de_chaleur_R24
+      fct_code: 3
+      address: 6
+      type: uint16
+      factor: 0.1
+
+    - name: Temp_exterieure_R1
+      fct_code: 3
+      address: 1
+      type: int16
+      factor: 0.1     
+
+    - name: Temp_retour_R2
+      fct_code: 3
+      address: 2
+      type: uint16
+      factor: 0.1 
+
+    - name: Temp_sortie_source_chaleur_R6
+      fct_code: 3
+      address: 7
+      type: uint16
+      factor: 0.1 
+
+
+  - name: PAC3100_AppointPAC
+    host: 192.168.1.132
+    port: 17002
+    unit: 2
+    gauges:
+
+    - name: power
+      fct_code: 3
+      address: 49
+      type: float32
+      factor: 1
+
+    - name: energy
+      fct_code: 3
+      address: 801
+      type: float64
+      factor: 0.001
+
+
+  - name: PAC
+    host: 192.168.1.132
+    port: 502
+    unit: 1
+    gauges:
+
+    - name: power
+      fct_code: 3
+      address: 65
+      type: float32
+      factor: 1
+
+    - name: energy
+      fct_code: 3
+      address: 801
+      type: float64
+      factor: 0.001
+
+
+  - name: PAC1600_CommandePAC
+    host: 192.168.1.132
+    port: 17002
+    unit: 4
+    gauges:
+
+    - name: power
+      fct_code: 3
+      address: 19
+      type: uint32
+      factor: 10
+
+    - name: energy
+      fct_code: 3
+      address: 6687
+      type: uint32
+      factor: 0.001
+
+
+  - name: Metz_DI10
+    host: 192.168.1.132
+    port: 17002
+    unit: 5
+    gauges:
+
+    - name: states
+      fct_code: 4
+      address: 0
+      type: uint16
+      factor: 1
+
+
+  - name: Capteur_direction
+    host: 192.168.1.138
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: co2
+      fct_code: 4
+      address: 8
+      type: uint16
+      factor: 1
+
+    - name: humidite
+      fct_code: 4
+      address: 9
+      type: uint16
+      factor: 0.1
+
+    - name: temperature
+      fct_code: 4
+      address: 7
+      type: uint16
+      factor: 0.1
+
+    - name: tvoc
+      fct_code: 4
+      address: 10
+      type: uint16
+      factor: 1
+
+
+  - name: Chargeur_vehicule
+    host: 192.168.1.136
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 3
+      address: 0
+      type: uint32
+      factor: 0.1
+
+    - name: energy
+      fct_code: 3
+      address: 514
+      type: uint32
+      factor: 0.0001 
+
+
+  - name: PAC2200_Sanitaire
+    host: 192.168.1.137
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 3
+      address: 63
+      type: float32
+      factor: 1
+
+    - name: energy
+      fct_code: 3
+      address: 801
+      type: float64
+      factor: 0.001
+
+
+  - name: POC1000_Pompes
+    host: 192.168.1.139
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 3
+      address: 3085
+      type: float32
+      factor: 1
+
+    - name: energy
+      fct_code: 3
+      address: 3097
+      type: float64
+      factor: 0.001
+
+
+  - name: REST101J_Projecteur
+    host: 192.168.1.60
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 4
+      address: 200
+      type: uint16
+      factor: 1
+
+    - name: energy
+      fct_code: 4
+      address: 301
+      type: uint16
+      factor: 0.001
+
+    - name: state
+      fct_code: 1
+      address: 101
+      type: uint16
+      factor: 1
+
+
+  - name: UPS1
+    host: 192.168.1.92
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 3
+      address: 136
+      type: uint16
+      factor: 0.10548523206751054852320675105485
+
+    - name: energy
+      fct_code: 3
+      address: 145
+      type: uint32
+      factor: 0.001
+
+
+  - name: UPS2
+    host: 192.168.1.94
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 3
+      address: 136
+      type: uint16
+      factor: 0.10548523206751054852320675105485
+
+    - name: energy
+      fct_code: 3
+      address: 145
+      type: uint32
+      factor: 0.001      
+
+
+  - name: UPS3
+    host: 192.168.1.95
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 3
+      address: 136
+      type: uint16
+      factor: 0.10548523206751054852320675105485
+
+    - name: energy
+      fct_code: 3
+      address: 145
+      type: uint32
+      factor: 0.001
+
+
+  - name: DIN4PZ_Ventilation
+    host: 192.168.1.29
+    port: 502
+    unit: 1
+    gauges:
+     
+    - name: power
+      fct_code: 4
+      address: 200
+      type: uint16
+      factor: 1
+
+    - name: energy
+      fct_code: 4
+      address: 302
+      type: uint32
+      factor: 0.001     
+
+    - name: state_interphones
+      fct_code: 3
+      address: 103
+      type: uint16
+      factor: 1
+
+    - name: state_ventilation
+      fct_code: 3
+      address: 101
+      type: uint16
+      factor: 1            
